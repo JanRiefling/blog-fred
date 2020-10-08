@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Router from 'next/router';
+import cookie from 'js-cookie';
 
 function LoginForm() {
 
@@ -9,14 +11,37 @@ function LoginForm() {
 
     function performLogin(e) {
         e.preventDefault();
-        console.log(username + " " + password);
+        //call api
+        fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        })
+          .then((r) => {
+            return r.json();
+          })
+          .then((data) => {
+            if (data && data.error) {
+              setLoginError(data.message);
+            }
+            if (data && data.token) {
+              //set cookie
+              cookie.set('token', data.token, {expires: 2});
+              Router.push('/about');
+            }
+          });
     }
 
     return (
         <form onSubmit={performLogin}>
             <input
                 name="username"
-                type="text"
+                type="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 />
