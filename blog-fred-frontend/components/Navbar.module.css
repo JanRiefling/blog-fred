@@ -1,0 +1,15 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navList {
+    display: flex;
+    list-style-type: none;
+}
+
+.navList li {
+    padding: 2rem;
+    font-size: 2vw;
+}
