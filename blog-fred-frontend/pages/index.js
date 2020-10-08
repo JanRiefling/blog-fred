@@ -2,8 +2,26 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import NavBar from "../components/Navbar";
 import LoginForm from "../components/LoginForm";
+import fetch from "isomorphic-unfetch";
+import useSWR from "swr";
+import cookie from "js-cookie";
+import Router from 'next/router';
+
 
 export default function Home() {
+  const { data, revalidate } = useSWR("/api/jwt-util", async function (args) {
+    const res = await fetch(args);
+    return res.json();
+  });
+
+  if (!data) return <h1>Loading...</h1>;
+  let loggedIn = false;
+  if (data.username) {
+    loggedIn = true;
+  }
+
+  console.log(loggedIn);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,8 +44,10 @@ export default function Home() {
 
           <a href="https://nextjs.org/learn" className={styles.card}>
             <h3>Blog Entry Two &rarr;</h3>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+            <p>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            </p>
           </a>
 
           <a
@@ -35,8 +55,10 @@ export default function Home() {
             className={styles.card}
           >
             <h3>Blog Entry 3 &rarr;</h3>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+            <p>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            </p>
           </a>
 
           <a
@@ -45,7 +67,7 @@ export default function Home() {
           >
             <h3>Blog Entry Four &rarr;</h3>
             <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
             </p>
           </a>
@@ -53,12 +75,23 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <LoginForm />
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
+        {!loggedIn ? 
+
+        <LoginForm /> :
+
+        <div>
+        <button
+          onClick={() => {
+            cookie.remove('token');
+            revalidate();
+            Router.push('/');
+          }}
         >
+          Logout
+        </button>
+      </div>
+        }
+        <a href="#" target="_blank" rel="noopener noreferrer">
           Powered by Elch
         </a>
       </footer>

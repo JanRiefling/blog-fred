@@ -11,7 +11,7 @@ function LoginForm() {
 
     function performLogin(e) {
         e.preventDefault();
-        //call api
+        
         fetch('/api/login', {
           method: 'POST',
           headers: {
@@ -32,7 +32,7 @@ function LoginForm() {
             if (data && data.token) {
               //set cookie
               cookie.set('token', data.token, {expires: 2});
-              Router.push('/about');
+              Router.push('/');
             }
           });
     }
