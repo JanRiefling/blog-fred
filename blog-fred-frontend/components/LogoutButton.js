@@ -6,8 +6,7 @@ import useUser from "../data/use-user";
 import { useEffect } from "react";
 
 export default function LogoutButton() {
-
-    const {loggedOut, mutate } = useUser();
+  const { loggedOut, mutate } = useUser();
 
   return (
     <div>
