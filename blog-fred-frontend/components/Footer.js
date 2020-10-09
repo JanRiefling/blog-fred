@@ -9,11 +9,19 @@ export default function Footer() {
   const [loggedIn, setLoggedIn] = useState();
 
   useEffect(() => {
-    if (user.username) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
+    if(user === undefined) {
+      console.log(undefined);
     }
+    try{
+      if (user.username) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    } catch(err) {
+      console.error(err);
+    }
+
   }, [user]);
 
   return (

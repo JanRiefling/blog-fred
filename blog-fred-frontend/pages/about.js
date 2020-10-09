@@ -1,6 +1,8 @@
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import NavBar from "../components/Navbar";
+import Footer from "../components/Footer";
+
 
 export default function AboutUs() {
   return (
@@ -30,11 +32,7 @@ export default function AboutUs() {
           </a>
         </div>
       </main>
-      <footer className={styles.footer}>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          Powered by Elch
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }

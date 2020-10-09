@@ -2,6 +2,7 @@ import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import NavBar from "../components/Navbar";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 export default function Archive() {
   return (
@@ -47,15 +48,7 @@ export default function Archive() {
           </div>
         </div>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by Elch
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }
