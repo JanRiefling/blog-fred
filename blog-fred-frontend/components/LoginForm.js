@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Router from 'next/router';
 import cookie from 'js-cookie';
+import useUser from "../data/use-user";
 
 function LoginForm() {
+
+    const {mutate} = useUser();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -33,6 +36,7 @@ function LoginForm() {
               //set cookie
               cookie.set('token', data.token, {expires: 2});
               Router.push('/');
+              mutate();
             }
           });
     }
