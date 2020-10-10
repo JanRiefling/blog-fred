@@ -2,6 +2,7 @@ import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
+import CreatePostForm from "../components/CreatePostForm";
 import useUser from "../data/use-user";
 
 
@@ -19,10 +20,10 @@ const {user} = useUser();
       </Head>
       <NavBar />
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome {user.username} </h1>
+        <h1 className={styles.title}>Welcome {user ? user.username : "..."} </h1>
 
         <div className={styles.grid}>
-         
+         <CreatePostForm />
         </div>
       </main>
       <Footer />

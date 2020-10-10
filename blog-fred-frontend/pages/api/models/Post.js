@@ -8,8 +8,9 @@ const postSchema = new Schema ({
     body: { type: String, required: true },
     timestamp: {type: Date, default: Date.now},
     vote: {type: Number},
-    categories: [{type: String}],
-    keywords: [{type: String}],
+    categories: {type: String},
+    keywords: {type: String},
+    author: {type: String, required: true}
   }, {collection: 'posts'});
 
 
