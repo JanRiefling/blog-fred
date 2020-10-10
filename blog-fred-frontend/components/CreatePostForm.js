@@ -19,19 +19,43 @@ let blogPost = {
     body: body,
     categories: categories,
     keywords: keywords,
-    author: user.username,
+    author: "Elch",
     timestamp: Date.now,
-
 };
 
 console.log(blogPost);
 
-
+function createPost(e) {
+    e.preventDefault();
+    fetch("/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+         title,
+         subtitle,
+         body,
+         categories,
+         keywords,
+         author: "Elch",
+         timestamp: Date.now
+        }),
+      })
+      .then((r) => {
+        return r.json();
+      })
+      .then((data) => {
+        if (data && data.error) {
+          setLoginError(data.message);
+        }
+      });
+}
 
 
   return (
     <section>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={createPost}>
         <label className={styles.lable}>Title:
         <input
           name="title"
