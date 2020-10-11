@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import useUser from '../data/use-user';
-import userFetcher from '../lib/user-fetcher';
 import styles from "./CreatePostForm.module.css"
 
 export default function CreatePostForm() {
@@ -27,7 +26,7 @@ console.log(blogPost);
 
 function createPost(e) {
     e.preventDefault();
-    fetch("/api/posts", {
+    fetch("/api/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

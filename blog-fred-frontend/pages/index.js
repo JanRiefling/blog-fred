@@ -2,32 +2,25 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
+import fetch from 'isomorphic-unfetch';
 
 
 
 
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await fetch("http://localhost:3000/api/posts", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+
+  const res = await fetch("http://localhost:3000/api/posts")
     const posts = await res.json()
 
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
-    props: {
-      posts,
-    },
+     props: {
+       posts,
+      },
+    }
   }
   
-}
 
-export default function Home(posts) {
+export default function Home({posts}) {
 
 
   return (
@@ -43,9 +36,8 @@ export default function Home(posts) {
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
-
-            {posts.map((post) => (
-            <h3>post.title</h3>
+        {posts.map(post => (
+            <h3>{post.title}</h3>
             ))}
             <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam

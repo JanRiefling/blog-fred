@@ -3,9 +3,11 @@ const assert = require('assert');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET;
+import mongoConnection from "../../lib/api/mongo-connection"
+
 
 require('dotenv/config');
-const User = require('./models/User');
+const User = require('../../data/models/User');
 
 
 
@@ -18,11 +20,7 @@ export default (req, res) => {
       res.status(403).send(bodyError.message);
     }
 
-    mongoose.connect(process.env.DB_CONNECTION, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false
-    });
+    mongoConnection();
 
     User.findOne({username: req.body.username}, function(err, user) {
       if (err) {

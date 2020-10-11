@@ -8,17 +8,16 @@ const Post = require('../../data/models/Post');
 
 export default (req, res) => {
 
-  if (req.method === 'GET') {
+  if (req.method === 'POST') {
 
     mongoConnection();
-   
+    let newPost = new Post(req.body);
 
-    Post.find({}, function(err, posts) {
+    newPost.save(function(err, post) {
       if (err) {
         return console.error(err);
       } else {
-        res.status(200).json(posts)
-        console.log(posts);
+        console.log("Good insert");
           }
     });
 } else {
