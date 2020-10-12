@@ -32,12 +32,9 @@ export default function Home({posts}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
-
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to our Blog!</h1>
-
         <div className={styles.grid}>
-
         {posts.map( post => (<BlogPostStartCard props={post} key={post.id} />))}
         </div>
       </main>

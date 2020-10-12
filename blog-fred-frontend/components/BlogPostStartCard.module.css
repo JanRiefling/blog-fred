@@ -10,8 +10,7 @@
     border: 1px solid #eaeaea;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
-    max-height: 200px;
-    overflow: hidden;
+
   }
   
   .card:hover,
@@ -30,5 +29,14 @@
     margin: 0;
     font-size: 1.25rem;
     line-height: 1.5;
+  }
+
+  .postCardHeader {
+ 
+  }
+
+  .postCardBody {
+    max-height: 200px;
+    overflow: hidden;
   }
 
