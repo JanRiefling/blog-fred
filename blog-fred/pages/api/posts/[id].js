@@ -13,14 +13,14 @@ export default (req, res) => {
     mongoConnection();
 
  const {
-       param: {_id},
+       query: {id},
    } = req;
 
-    Post.findById({_id}, function(err, post) {
+    Post.findById({_id: id}, function(err, post) {
       if (err) {
         return console.error(err);
       } else {
-        res.status(200).json(post)
+        res.status(200).json(post);
         console.log(post);
           }
     });
