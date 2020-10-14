@@ -10,13 +10,12 @@ export default function BlogPostStartCard({ props }) {
         <h6>{new Date(props.timestamp).toLocaleDateString()}</h6>
       </div>
       <div className={styles.postCardBody}>
-      <p>{props.body}</p>
+        <p>{props.body}</p>
       </div>
       <div className={styles.postCardFooter}>
-        
-            <Link href={`/posts/${props.id}`}>
-            <a>Read more...</a>
-            </Link>
+        <Link href={`/posts/${props._id}`}>
+          <a>Read more...</a>
+        </Link>
       </div>
     </div>
   );

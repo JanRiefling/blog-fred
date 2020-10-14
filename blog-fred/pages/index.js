@@ -23,8 +23,6 @@ export async function getStaticProps() {
 
 export default function Home({posts}) {
 
-  console.log(posts);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -35,7 +33,7 @@ export default function Home({posts}) {
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to our Blog!</h1>
         <div className={styles.grid}>
-        {posts.map( post => (<BlogPostStartCard props={post} key={post.id} />))}
+        {posts.map( post => (<BlogPostStartCard props={post} key={post._id} />))}
         </div>
       </main>
       <Footer />

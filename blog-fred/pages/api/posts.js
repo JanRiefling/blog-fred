@@ -17,8 +17,7 @@ export default (req, res) => {
       if (err) {
         return console.error(err);
       } else {
-        res.status(200).json(posts)
-        console.log(posts);
+        res.status(200).json(posts);
           }
     });
 } else {
